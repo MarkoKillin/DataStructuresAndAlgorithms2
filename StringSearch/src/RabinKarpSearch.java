@@ -1,10 +1,10 @@
 
-public class RabinKarpomSearch {
+public class RabinKarpSearch {
 	String txt,pat;
 	int txtH,patH;
 	int fcFactor = 1;
 	int LP = 15231243;
-	public RabinKarpomSearch(String txt, String pat) {
+	public RabinKarpSearch(String txt, String pat) {
 		if(pat.length()>txt.length())
 			throw new IllegalArgumentException();
 		this.txt = txt;

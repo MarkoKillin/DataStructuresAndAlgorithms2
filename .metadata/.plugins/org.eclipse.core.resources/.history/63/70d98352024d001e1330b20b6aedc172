@@ -1,0 +1,46 @@
+package def;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+
+public class HuffmanTree {
+	private class CharFrequency implements Comparable<CharFrequency>{
+		char c; 
+		int freq;
+		public CharFrequency(char c, int freq) {
+			this.c = c;
+			this.freq = freq;
+		}
+		@Override
+		public int compareTo(CharFrequency o) {
+			return freq-o.freq;
+		}
+	}
+	private LinkedList<CharFrequency> freqList;
+	private HashMap<Character, CharFrequency> freqMap;
+	public HuffmanTree(String text) {
+		this.freqList = new LinkedList<>();
+		this.freqMap = new HashMap<>();
+		compute(text);
+		construct();
+		
+	}
+	private void compute(String text) {
+		for (int i = 0; i < text.length(); i++) {
+			char c = text.charAt(i);
+			CharFrequency cf = freqMap.get(c);
+			if(cf==null) {
+				cf = new CharFrequency(c, 1);
+				freqList.addLast(cf);
+				freqMap.put(c, cf);
+			} else
+				cf.freq++;
+		}
+	}
+	private void construct() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+}

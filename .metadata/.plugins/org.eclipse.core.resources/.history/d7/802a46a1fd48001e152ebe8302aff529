@@ -1,0 +1,77 @@
+package implementacija;
+
+import interfejsi.Map;
+
+public class OHashMap<K, V> implements Map<K, V> {
+	private static final int DEF = 101;
+	private static class Node{
+		Object key;
+		Object value;
+		Node next;
+		public Node(Object key, Object value) {
+			super();
+			this.key = key;
+			this.value = value;
+		}
+	}
+	private Node[] table;
+	
+	
+	public OHashMap(int size) {
+		if(size<=0)
+			throw new IllegalArgumentException();
+		this.table = new Node[size];
+	}
+	
+	public OHashMap() {
+		this(DEF);
+	}
+	
+	private int hash(K o) {
+		if(o==null)
+			throw new IllegalArgumentException();
+		return Math.abs(o.hashCode()%table.length);
+	}
+
+	private Node[] searchColisionChain(K key, int hashValue) {
+		Node current = table[hashValue];
+		Node prev = null;
+		while(current!=null) {
+			if(current.key.equals(key)) {
+				Node[] res = new Node[2];
+				res[0] = current;
+				res[1] = prev;
+				return res;
+			}
+			prev = current;
+			current = current.next;
+		}
+		return null;
+	}
+	
+	@Override
+	public boolean insert(K key, V value) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(K key) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public V get(K key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean modify(K key, V value) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+}

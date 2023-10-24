@@ -1,0 +1,37 @@
+import java.nio.channels.Pipe;
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class MinDistance2D {
+	private Point2d[] points;
+
+	public MinDistance2D(Point2d points) {
+		this.points = points;
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

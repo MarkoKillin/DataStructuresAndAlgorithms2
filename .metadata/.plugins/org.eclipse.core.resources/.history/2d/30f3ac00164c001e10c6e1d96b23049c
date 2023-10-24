@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
+
+public class HeapPQ<T extends Comparable<T>> implements PriorityQueue<T>{
+	private ArrayList<T> queue = new ArrayList<>();
+	private static final int DEF = 101;
+	
+	public HeapPQ(int size) {
+		if(size<=0)
+			throw new IllegalArgumentException();
+		this.queue = new ArrayList<>(size);
+	}
+	
+	public HeapPQ() {
+		this(DEF);
+	}
+
+	@Override
+	public T max() {
+		
+	}
+	
+	@Override
+	public T delMax() {
+		
+	}
+	
+	@Override
+	public int size() {
+		
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		
+	}
+	
+	@Override
+	public void insert(T element) {
+		
+	}
+	
+}

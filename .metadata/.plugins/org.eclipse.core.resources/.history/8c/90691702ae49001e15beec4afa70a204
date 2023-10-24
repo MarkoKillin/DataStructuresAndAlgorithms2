@@ -1,0 +1,20 @@
+package def;
+
+public class HuffmanTree {
+	private class CharFrequency implements Comparable<CharFrequency>{
+		char c;
+		int freq;
+		public CharFrequency(char c, int freq) {
+			this.c = c;
+			this.freq = freq;
+		}
+		@Override
+		public int compareTo(CharFrequency o) {
+			return freq-o.freq;
+		}
+		@Override
+		public String toString() {
+			return "[" + c + ", f = " + freq + "]";
+		}
+	}
+}

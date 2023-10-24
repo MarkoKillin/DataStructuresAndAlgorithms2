@@ -1,0 +1,9 @@
+package implementacija;
+
+import interfejsi.Map;
+
+public class OHashMap<K, V> implements Map<K, V> {
+	
+	
+	
+}

@@ -1,0 +1,14 @@
+
+public class BruteForceSort {
+	public static <T extends Comparable<T>> void sort(T[] arr) {
+		for (int i = 1; i < arr.length; i++) {
+			for (int j = 0; j < i; j++) {
+				if(arr[i].compareTo(arr[j]) > 0) {
+					T tmp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = tmp;
+				}
+			}
+		}
+	}
+}

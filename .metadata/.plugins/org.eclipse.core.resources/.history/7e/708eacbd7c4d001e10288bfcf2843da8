@@ -1,0 +1,55 @@
+package implementacija;
+
+import interfejsi.Set;
+
+public class CHashSet<T> implements Set<T> {
+	private static final int DEF = 101;
+	private enum Status{
+		EMPTY,OCCUPIED,DELETED
+	}
+	private Object[] table;
+	private Status[] status;
+	private int numElements;
+	public CHashSet(int size) {
+		if(size<=0)
+			throw new IllegalArgumentException();
+		reset(size);
+	}
+	public CHashSet() {
+		this(DEF);
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

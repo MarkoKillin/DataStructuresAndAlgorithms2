@@ -1,0 +1,29 @@
+package def;
+
+import interfejsi.Set;
+
+public class BST<T extends Comparable<T>> implements Set<T>{
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

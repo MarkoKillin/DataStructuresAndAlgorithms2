@@ -1,0 +1,83 @@
+
+public class SortableList<T extends Comparable<T>> {
+	private Node root = null;
+	private class Node{
+		T info;
+		Node next;
+		public Node(T info) {
+			super();
+			this.info = info;
+		}
+	}
+	public void add(T element) {
+		Node n = new Node(element);
+		n.next = root;
+		root = n;
+	}
+	
+	public void insertionSort() {
+		if(root==null || root.next==null)
+			return;
+		Node lastSorted = root;
+		while(lastSorted.next!=null) {
+			Node firstUnsorted = lastSorted.next;
+			if(lastSorted.info.compareTo(firstUnsorted.info) <= 0)
+				lastSorted = firstUnsorted;
+			else if(lastSorted.info.compareTo(root.info) < 0) {
+				lastSorted.next = firstUnsorted.next;
+				firstUnsorted.next = root;
+				root = firstUnsorted;
+			} else {
+				Node prev = null, curr = root;
+				while(curr.info.compareTo(firstUnsorted.info) <= 0) {
+					prev = curr;
+					curr = curr.next;
+				}				
+				lastSorted.next = firstUnsorted.next;
+				firstUnsorted.next = prev.next;
+				prev.next = firstUnsorted;
+			}
+		}
+	}
+	
+	public void mergeSort() {
+		if(root!=null)
+			root = mergeSort(root);
+	}
+
+	private Node mergeSort(Node start) {
+		if(start.next==null)
+			return start;
+		Node l1 = start, l1End = l1;
+		Node l2 = start.next, l2End = l2;
+		Node current = start.next.next;
+		
+		return null;
+	}
+	
+	private Node merge(Node l1, Node l2) {
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

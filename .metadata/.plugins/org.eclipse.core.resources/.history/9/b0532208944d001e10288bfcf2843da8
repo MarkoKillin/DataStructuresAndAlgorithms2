@@ -1,0 +1,75 @@
+package Knapsack;
+
+import java.util.Arrays;
+
+public class KnapsackBB {
+	private int knapsackWeight;
+	private boolean[] in;
+	private int maxProfit;
+	private boolean[] maxConfig;
+	private Item[] items;
+	public KnapsackBB(int knapsackWeight, Item[] items) {
+		super();
+		this.knapsackWeight = knapsackWeight;
+		this.in = new boolean[items.length];
+		this.maxProfit = 0;
+		this.maxConfig = new boolean[items.length];
+		this.items = items;
+	}
+	
+	public void find() {
+		Arrays.sort(items);
+		find(0,0,0);
+	}
+
+	private void find(int k, int currentWeight, int currentProfit) {
+		if(k==items.length) {
+			if(currentProfit>maxProfit) {
+				maxProfit = currentProfit;
+				for (int i = 0; i < in.length; i++) {
+					maxConfig[i] = in[i];
+				}
+			}
+		} else {
+			if(items[k].getWeight()+currentWeight<=knapsackWeight) {
+				int nextProfit = currentProfit+items[k].getProfit();
+				int nextWeight = currentWeight+items[k].getWeight();
+				double boundAdd = nextProfit+bound(k+1,knapsackWeight-nextWeight);
+				if(boundAdd>maxProfit) {
+					in[k] = true;
+					find(k+1, nextWeight, nextProfit);
+				}
+			}
+			double boundSkip = currentProfit+bound(k+1, knapsackWeight-currentWeight);
+			if(boundSkip>maxProfit) {
+				in[k] = false;
+				find(k+1, currentWeight, currentProfit);
+			}
+		}
+	}
+
+	private int bound(int k, int weight) {
+		int sumw = 0;
+		double profit = 0.0;
+		while(k<items.length && sumw+items[k].getWeight()<=weight) {
+			sumw+=items[k].getWeight();
+			profit+=items[k].getProfit();
+			k++;
+		}
+		if(k<items.length) {
+			double fraction = (double)weight-sumw/(double)items[k].getWeight();
+			profit+=fraction*items[k].getProfit();
+		}
+		return profit;
+	}
+	
+}
+
+
+
+
+
+
+
+
+

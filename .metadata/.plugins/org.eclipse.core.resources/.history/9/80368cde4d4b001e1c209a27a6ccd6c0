@@ -1,0 +1,103 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class MinDistance2D {
+	private Point2d[] points;
+
+	public MinDistance2D(Point2d[] points) {
+		if(points.length < 2)
+			throw new IllegalArgumentException("mora bar 2");
+		this.points = points;
+	}
+	
+	private static class XComparator implements Comparator<Point2d>{
+		@Override
+		public int compare(Point2d o1, Point2d o2) {
+			double d = o1.x-o2.x;
+			if(d<0) return -1;
+			if(d>0) return 1;
+			return 0;
+		}
+	}
+	
+	private static class YComparator implements Comparator<Point2d>{
+		@Override
+		public int compare(Point2d o1, Point2d o2) {
+			double d = o1.y-o2.y;
+			if(d<0) return -1;
+			if(d>0) return 1;
+			return 0;
+		}
+	}
+	
+	public double findDQ() {
+		Arrays.sort(points, new XComparator());
+		for (int i = 0; i < points.length-1; i++) {
+			if(points[i].coincident(points[i+1]))
+				return 0.0;
+		}
+		return findDQ(0, points.length-1);
+	}
+
+	private double findDQ(int from, int to) {
+		if(from==to)
+			return Double.MAX_VALUE;
+		if(to-from == 1)
+			return points[from].distance(points[to]);
+		int median = (from+to)/2;
+		double dl = findDQ(from, median);
+		double dr = findDQ(median+1, to);
+		double minDist = Math.min(dl, dr);
+		double minCrossing = findMinCrossing(from, to, median, minDist);
+		return Math.min(minDist, minCrossing);
+	}
+
+	private double findMinCrossing(int from, int to, int median, double delta) {
+		double medianX = points[median].x;
+		Point2d[] box = new Point2d[points.length];
+		int boxCnt = 0;
+		for (int i = from; i <= to; i++) {
+			if(Math.abs(points[i].x - medianX) < delta)
+				box[boxCnt++] = points[i];
+		}
+		Arrays.sort(box, 0, boxCnt, new YComparator());
+		double minDist = Double.MAX_VALUE;
+		for (int i = 0; i < boxCnt -1; i++) {
+			Point2d current = box[i];
+			for (int j = i+1; j < boxCnt; j++) {
+				if(box[j].y - current.y >= delta)
+					break;
+				double d =current.distance(box[j]);
+				if(d<minDist)
+					minDist = d;
+			}
+			
+		}
+		return minDist;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

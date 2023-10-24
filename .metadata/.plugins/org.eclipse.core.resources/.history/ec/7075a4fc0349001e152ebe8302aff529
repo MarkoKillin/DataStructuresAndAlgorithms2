@@ -1,0 +1,82 @@
+package Queen;
+
+public class NQueens {
+	private int n;
+	private int[] table;
+	private int slCounter;
+	private class AvailableCell{
+		int y;
+		AvailableCell next;
+		public AvailableCell(int y) {
+			super();
+			this.y = y;
+		}
+	}
+	private AvailableCell[] aCells;
+	
+	
+	
+	public NQueens(int n) {
+		this.n = n;
+		this.table = new int[n];
+		this.slCounter = 0;
+		this.aCells = new AvailableCell[n];
+	}
+
+	public void find() {
+		int currentRow = 0;
+		for (int i = n-1; i >= 0; i--) {
+			AvailableCell c = new AvailableCell(i);
+			c.next = aCells[0];
+			aCells[0] = c;
+		}
+		
+		while(currentRow>=0) {
+			while(aCells[currentRow] != null) {
+				table[currentRow] = aCells[currentRow].y;
+				aCells[currentRow] = aCells[currentRow].next;
+				if(currentRow == n-1)
+					printSolution();
+				else {
+					currentRow++;
+					findAvailableCells(currentRow);
+				}
+			}
+			currentRow--;
+		}
+	}
+	//(i, table[i]) (currentRow, j)
+	private void findAvailableCells(int currentRow) {
+		aCells[currentRow] = null;
+		for (int j = n-1; j >= 0; j--) {
+			boolean available = true;
+			for (int i = 0; i < currentRow; i++) {
+				if(table[i]==j && Math.abs(i-currentRow) == Math.abs(table[i]-j)) {
+					available = false;
+					break;
+				}
+			}
+			if(available) {
+				AvailableCell c = new AvailableCell(j);
+				c.next = aCells[currentRow];
+				aCells[currentRow] = c;
+			}
+		}
+	}
+
+	private void printSolution() {
+		++slCounter;
+		System.out.println("Solution " + slCounter);
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if(table[i] == j)
+					System.out.print("X ");
+				else
+					System.out.print("- ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
+	
+}

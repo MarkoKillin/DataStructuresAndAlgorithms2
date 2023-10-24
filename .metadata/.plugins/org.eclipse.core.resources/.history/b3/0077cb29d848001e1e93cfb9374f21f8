@@ -1,0 +1,24 @@
+
+public class HeapSort {
+	public static <T extends Comparable<T>> void sort(T[] arr) {
+		int lastIndex = arr.length-1;
+		int lastParent = (lastIndex-1)/2;
+		
+		while(lastParent >= 0) {
+			makeHeap(arr, lastParent, lastIndex);
+			lastParent--;
+		}
+		int end = lastIndex;
+		while(end>=0) {
+			T tmp = arr[end];
+			arr[end] = arr[0];
+			arr[0] = tmp;
+			end--;
+			makeHeap(arr, 0, end);
+		}
+	}
+
+	private static <T extends Comparable<T>> void makeHeap(T[] arr, int parent, int end) {
+		
+	}
+}

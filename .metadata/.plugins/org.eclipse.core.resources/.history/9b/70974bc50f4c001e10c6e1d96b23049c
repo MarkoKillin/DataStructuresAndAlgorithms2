@@ -1,0 +1,13 @@
+
+public class InsertionSort {
+	public static <T extends Comparable<T>> void sortv1(T[] a) {
+		
+	}
+	
+	public static <T extends Comparable<T>> void sortv2(T[] a) {
+		
+	}
+	public static <T extends Comparable<T>> void sortv3(T[] a) {
+		
+	}
+}

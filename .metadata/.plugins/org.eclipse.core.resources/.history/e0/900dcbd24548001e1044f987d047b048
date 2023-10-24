@@ -1,0 +1,50 @@
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
+
+public class HeapPQ<T extends Comparable<T>> implements PriorityQueue<T>{
+	private ArrayList<T> queue = new ArrayList<>();
+
+	@Override
+	public void insert(T element) {
+		
+	}
+	
+	@Override
+	public T delMax() {
+		if(queue.size()==0)
+			throw new IllegalArgumentException();
+		T max = queue.get(0);
+		swap(0, queue.size()-1);
+		queue.remove(queue.size()-1);
+		restoreHeap();
+		return max;
+	}
+	
+	private void restoreHeap() {
+		int parentIndex = 0;
+		boolean heapRestored = false;
+		
+	}
+
+	private void swap(int i, int j) {
+		T tmp = queue.get(i);
+		queue.set(i, queue.get(j));
+		queue.set(j, tmp);
+	}
+
+	@Override
+	public T max() {
+		return queue.get(0);
+	}
+	
+	@Override
+	public int size() {
+		return queue.size();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return queue.size()==0;
+	}
+	
+}

@@ -1,0 +1,20 @@
+package Queen;
+
+public class NQueensRecursive {
+	private int n;
+	private int slCounter;
+	public NQueensRecursive(int n) {
+		super();
+		this.n = n;
+		this.slCounter = 0;
+	}
+	
+	public void find() {
+		find(0);
+	}
+
+	private void find(int currentRow) {
+		if(currentRow==n)
+			printSolution();
+	}
+}

@@ -1,0 +1,37 @@
+package Knapsack;
+
+public class KnapsackRecursive {
+	private int knapsackWeight;
+	private Item[] items;
+	private boolean[] in;
+	private int maxProfit;
+	private boolean[] maxProfitConfiguration;
+	public KnapsackRecursive(int knapsackWeight, Item[] items) {
+		this.knapsackWeight = knapsackWeight;
+		this.items = items;
+		this.in = new boolean[items.length];
+		this.maxProfit = 0;
+		this.maxProfitConfiguration = new boolean[items.length];
+	}
+	public void find() {
+		find(0,0,0);
+	}
+	private void find(int k, int currentWeight, int currentProfit) {
+		if(k==items.length) {
+			if(maxProfit<currentProfit) {
+				maxProfit = currentProfit;
+				for (int i = 0; i < in.length; i++) {
+					maxProfitConfiguration[i] = in[i];
+				}
+			}
+		} else {
+			if(items[k].getWeight()+currentWeight<=knapsackWeight) {
+				in[k] = true;
+				find(k+1,currentWeight+items[k].getWeight(), currentProfit+items[k].getProfit());
+			}
+			in[k] = false;
+			find(k+1,currentWeight,currentProfit);
+		}
+	}
+	
+}

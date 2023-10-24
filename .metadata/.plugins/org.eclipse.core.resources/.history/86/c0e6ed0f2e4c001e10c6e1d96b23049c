@@ -1,0 +1,33 @@
+package implementacija;
+
+import interfejsi.Map;
+
+public class OHashMap<K, V> implements Map<K, V> {
+
+	@Override
+	public boolean insert(K key, V value) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(K key) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public V get(K key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean modify(K key, V value) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+	
+}

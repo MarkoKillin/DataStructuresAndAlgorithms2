@@ -1,0 +1,70 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class MinDistance2D {
+	Point2d[] points;
+
+	public MinDistance2D(Point2d[] points) {
+		if(points.length<2)
+			throw new IllegalArgumentException();
+		this.points = points;
+	}
+	private static class Xcom implements Comparator<Point2d>{
+		@Override
+		public int compare(Point2d o1, Point2d o2) {
+			double xd = o1.x-o2.x;
+			if(xd<0)
+				return -1;
+			else if(xd>0)
+				return 1;
+			else
+				return 0;
+		}
+	}
+	private static class Ycom implements Comparator<Point2d>{
+		@Override
+		public int compare(Point2d o1, Point2d o2) {
+			double xd = o1.y-o2.y;
+			if(xd<0)
+				return -1;
+			else if(xd>0)
+				return 1;
+			else
+				return 0;
+		}
+	}
+	public double findDQ() {
+		
+	}
+	private double findDQ(int from, int to) {
+		
+	}
+	private double findCrossing(int from, int to, int median, double delta) {
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

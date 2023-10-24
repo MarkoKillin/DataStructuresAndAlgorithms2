@@ -1,0 +1,26 @@
+
+public class Point2d {
+	private int x,y;
+	
+	public Point2d(int x, int y) {
+		super();
+		this.x = x;
+		this.y = y;
+	}
+
+	public boolean coincident(Point2d o) {
+		return x==o.x && y==o.y;
+	}
+	public double distance(Point2d o) {
+		double dx = x-o.x;
+		double dy = y-o.y;
+		dx = dx*dx;
+		dy = dy*dy;
+		return Math.sqrt(dy+dx);
+	}
+	
+	@Override
+	public String toString() {
+		return "(" + x + ", " + y + ")";
+	}
+}

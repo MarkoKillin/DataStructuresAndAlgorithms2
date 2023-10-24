@@ -1,0 +1,10 @@
+
+public class SelectionSort {
+	public static <T extends Comparable<T>> void sort(T[] arr) {
+		
+	}
+	
+	public static <T extends Comparable<T>> void sortv2(T[] arr) {
+		
+	}
+}

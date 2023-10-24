@@ -1,0 +1,52 @@
+package Knapsack;
+
+public class KnapsackBB {
+	private int knapsackWeight;
+	private Item[] items;
+	private boolean[] in;
+	private boolean[] maxConfig;
+	private int maxProfit;
+	public KnapsackBB(int knapsackWeight, Item[] items) {
+		this.knapsackWeight = knapsackWeight;
+		this.items = items;
+		this.in = new boolean[items.length];
+		this.maxConfig = new boolean[items.length];
+		this.maxProfit = 0;
+	}
+	
+	public void find() {
+		find(0,0,0);
+	}
+
+	private void find(int k, int currentWeight, int currentProfit) {
+		if(k==items.length) {
+			if(maxProfit<currentProfit) {
+				maxProfit = currentProfit;
+				for (int i = 0; i < in.length; i++) {
+					maxConfig[i] = in[i];
+				}
+			}
+		} else {
+			if(items[k].getWeight()+currentWeight<=knapsackWeight) {
+				int nextWeight = items[k].getWeight()+currentWeight;
+				int nextProfit = items[k].getProfit()+currentProfit;
+				double boundAdd = nextProfit + bound(k+1,knapsackWeight-nextWeight);
+				if(boundAdd>maxProfit) {
+					in[k] = true;
+					find(k+1,nextWeight,nextProfit);
+				}
+			}
+			double boundSkip = currentProfit + bound(k+1, knapsackWeight-currentWeight);
+			if(boundSkip>maxProfit) {
+				in[k] = false;
+				find(k+1,currentWeight,currentProfit);
+			}
+		}
+	}
+
+	private int bound(int i, int j) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+}

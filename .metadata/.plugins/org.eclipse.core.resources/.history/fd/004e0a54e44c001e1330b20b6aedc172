@@ -1,0 +1,64 @@
+package Queen;
+
+
+public class NQueensMin {
+	private int n;
+	private int[] table;
+	private int[] firstAvailableCell;
+	private int slCounter;
+	public NQueensMin(int n) {
+		this.n = n;
+		this.table = new int[n];
+		this.firstAvailableCell = new int[n];
+		this.slCounter = 0;
+	}
+	
+	public void find() {
+		int currentRow = 0;
+		firstAvailableCell[0] = 0;
+		while(currentRow>=0) {
+			while(firstAvailableCell[currentRow]<n) {
+				table[currentRow] = firstAvailableCell[currentRow];
+				updateCells(currentRow);
+				if(currentRow==n-1)
+					printSolution();
+				else {
+					currentRow++;
+					updateCells(currentRow);
+				}
+			}
+		}
+	}
+	
+	private void updateCells(int currentRow) {
+		for (int i = firstAvailableCell[currentRow]; i < n-1; i++) {
+			boolean available = true;
+			for (int j = 0; j < currentRow; j++) {
+				if(table[i]==j || Math.abs(j-table[i])==Math.abs(currentRow-i)) {
+					available = false;
+					break;
+				}
+			}
+			if(available) {
+				firstAvailableCell[currentRow]++;
+			}
+		}
+		firstAvailableCell[currentRow] = n;
+	}
+	
+	private void printSolution() {
+		slCounter++;
+		System.out.println("Solution:" + slCounter);
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if(j==table[i])
+					System.out.print("X ");
+				else
+					System.out.print("- ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
+	
+}

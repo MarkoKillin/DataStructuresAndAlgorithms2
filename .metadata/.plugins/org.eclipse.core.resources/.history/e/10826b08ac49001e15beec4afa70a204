@@ -1,0 +1,70 @@
+package def;
+
+public class BinaryTree<T extends Comparable<T>> {
+	private Btnode<T> root = null;
+	public void setRoot(Btnode<T> root) {
+		this.root = root;
+	}
+	public Btnode<T> getRoot() {
+		return root;
+	}
+	public boolean isEmpty() {
+		return root==null;
+	}
+	
+	//size, depth, dfs, bfs, dfsiter, preorder,inorder,postorder
+	public int getSize() {
+		return root==null ? 0 : getSize(root);
+	}
+	private int getSize(Btnode<T> current) {
+		int leftSize =  0;
+		Btnode<T> left = current.getLeft();
+		if(left!=null)
+			leftSize = getSize(left);
+		int rightSize = 0;
+		Btnode<T> right = current.getRight();
+		if(right!=null)
+			rightSize = getSize(right);
+		return 1+leftSize+rightSize;
+	}
+	
+	public int getDepth() {
+		return root==null ? -1 : getDepth(root);
+	}
+	private int getDepth(Btnode<T> current) {
+		int leftDepth =  -1;
+		Btnode<T> left = current.getLeft();
+		if(left!=null)
+			leftDepth = getSize(left);
+		int rightDepth = -1;
+		Btnode<T> right = current.getRight();
+		if(right!=null)
+			rightDepth = getSize(right);
+		return leftDepth>rightDepth ? 1+leftDepth : 1+rightDepth;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

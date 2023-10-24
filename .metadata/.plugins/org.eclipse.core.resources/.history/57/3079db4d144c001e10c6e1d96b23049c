@@ -1,0 +1,11 @@
+
+public class CombSort {
+	private static int nextGap(int k) {
+		
+		return k;
+	}
+	
+	public static <T extends Comparable<T>> void sort(T[] arr) {
+		
+	}
+}

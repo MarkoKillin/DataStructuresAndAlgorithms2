@@ -1,0 +1,68 @@
+package implementacija;
+
+import interfejsi.Set;
+
+public class OHashSet<T> implements Set<T> {
+	private static final int DEF = 101;
+	private static class Node{
+		Object info;
+		Node next;
+		public Node(Object info) {
+			super();
+			this.info = info;
+		}
+	}
+	
+	public OHashSet(int size) {
+		if(size<=0)
+			throw new IllegalArgumentException();
+		this.table = new Node[size];
+	}
+
+	public OHashSet() {
+		this(DEF);
+	}
+	private Node[] table;
+	
+	private int hash(Object o) {
+		if(o==null)
+			throw new IllegalArgumentException();
+		return Math.abs(o.hashCode()%table.length);
+	}
+	
+	private Node[] searchColisionChain(T element, int hashValue) {
+		Node current = table[hashValue];
+		Node prev = null;
+		while(current!=null) {
+			if(current.info.equals(element)) {
+				Node[] res = new Node[2];
+				res[0] = current;
+				res[1] = prev;
+				return res;
+			}
+			prev = current;
+			current = current.next;
+		}
+		return null;
+	}
+	@Override
+	public boolean insert(T element) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean member(T element) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean remove(T element) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+	
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 7 elements from project &apos;Sorting&apos;&#x0D;&#x0A;- Original project: &apos;Sorting&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     Bogosort.java&#x0D;&#x0A;     BruteForceSort.java&#x0D;&#x0A;     CombSort.java&#x0D;&#x0A;     ExchangeSort.java&#x0D;&#x0A;     InsertionSort.java&#x0D;&#x0A;     SelectionSort.java&#x0D;&#x0A;     ShellSort.java" description="Delete elements" element1="/src&lt;{Bogosort.java" element2="/src&lt;{ExchangeSort.java" element3="/src&lt;{BruteForceSort.java" element4="/src&lt;{InsertionSort.java" element5="/src&lt;{CombSort.java" element6="/src&lt;{SelectionSort.java" element7="/src&lt;{ShellSort.java" elements="7" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1693512526144" subPackages="false" version="1.0"/>
+</session>

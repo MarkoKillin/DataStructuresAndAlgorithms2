@@ -1,0 +1,5 @@
+public class KnapsackDP {
+	private int knapsackWeight;
+	
+
+}

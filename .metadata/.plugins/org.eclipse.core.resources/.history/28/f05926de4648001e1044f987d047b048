@@ -1,0 +1,82 @@
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
+
+public class HeapPQ<T extends Comparable<T>> implements PriorityQueue<T>{
+	private ArrayList<T> queue = new ArrayList<>();
+
+	@Override
+	public void insert(T element) {
+		
+	}
+	
+	@Override
+	public T delMax() {
+		if(queue.size()==0)
+			throw new IllegalArgumentException();
+		T max = queue.get(0);
+		swap(0, queue.size()-1);
+		queue.remove(queue.size()-1);
+		restoreHeap();
+		return max;
+	}
+	
+	private void restoreHeap() {
+		int parentIndex = 0;
+		boolean heapRestored = false;
+		while(!heapRestored) {
+			int maxSonIndex = getMaxSon(parentIndex);
+			if(maxSonIndex == -1)
+				heapRestored=true;
+			else {
+				T parent = queue.get(parentIndex);
+				T son = queue.get(maxSonIndex);
+				if(parent.compareTo(son) > 0)
+					heapRestored = true;
+				else {
+					swap(parentIndex, maxSonIndex);
+					parentIndex = maxSonIndex;
+				}
+			}
+		}
+		
+	}
+
+	private int getMaxSon(int parentIndex) {
+		int son1Index = 2*parentIndex+1;
+		int son2Index = 2*parentIndex+2;
+		int maxSonIndex = -1;
+		if(son1Index < queue.size())
+			maxSonIndex = son1Index;
+		if(son2Index < queue.size()) {
+			T son1 = queue.get(son1Index);
+			T son2 = queue.get(son2Index);
+			if(son1.compareTo(son2) < 0)
+				maxSonIndex = son2Index;
+		}
+		return maxSonIndex;
+	}
+
+	private void swap(int i, int j) {
+		T tmp = queue.get(i);
+		queue.set(i, queue.get(j));
+		queue.set(j, tmp);
+	}
+
+	@Override
+	public T max() {
+		if(queue.size()==0)
+			throw new IllegalArgumentException();
+		return queue.get(0);
+	}
+	
+	@Override
+	public int size() {
+		return queue.size();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return queue.size()==0;
+	}
+	
+}

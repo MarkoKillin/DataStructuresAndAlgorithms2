@@ -1,0 +1,82 @@
+package implementacija;
+
+import interfejsi.Set;
+
+public class CHashSet<T> implements Set<T> {
+	private static final int DEF = 101;
+	private enum Status{
+		EMPTY, DELETED, OCCUPIED
+	}
+	private Object[] table;
+	private Status[] status;
+	private int numElements;
+	
+	
+	public CHashSet(int size) {
+		if(size<=0)
+			throw new IllegalArgumentException();
+		this.table = new Object[size];
+		this.status = new Status[size];
+	}
+	
+	public CHashSet() {
+		this(DEF);
+	}
+	
+	private int hash(T o) {
+		if(o==null)
+			throw new IllegalArgumentException();
+		return Math.abs(o.hashCode()%table.length);
+	}
+
+	@Override
+	public boolean insert(T element) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean member(T element) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean remove(T element) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+
+public class InsertionSort {
+	public static <T extends Comparable<T>> void sort(T[] arr) {
+		for (int i = 1; i < arr.length; i++) {
+			if(arr[i-1].compareTo(arr[i]) > 0) {
+				T current = arr[i];
+				int j = i-1;
+				while(j>=0 && current.compareTo(arr[j]) < 0) {
+					arr[j+1]=arr[j];
+					j--;
+				}
+				arr[j+1]=current;
+			}
+		}
+	}
+	
+	public static <T extends Comparable<T>> void sortv1(T[] arr) {
+		for (int i = 1; i < arr.length; i++) {
+			T current = arr[i];
+			int j = i-1;
+			while(j>=0 && current.compareTo(arr[j]) < 0) {
+				arr[j+1]=arr[j];
+				j--;
+			}
+			arr[j+1]=current;
+		}
+	}
+	
+	public static <T extends Comparable<T>> void sortv2(T[] arr) {
+		int minIndex = 0;
+		for (int i = 1; i < arr.length; i++) {
+			if(arr[minIndex].compareTo(arr[i]) > 0)
+				minIndex = i;
+		}
+		if(minIndex!=0) {
+			T tmp = arr[0];
+			arr[0] = arr[minIndex];
+			arr[minIndex] = tmp;
+		}
+		
+		for (int i = 2; i < arr.length; i++) {
+			T current = arr[i];
+			int j = i-1;
+			while(current.compareTo(arr[j]) < 0) {
+				arr[j+1]=arr[j];
+				j--;
+			}
+			arr[j+1]=current;
+		}
+	}
+}

@@ -1,0 +1,43 @@
+import java.nio.channels.Pipe;
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class MinDistance2D {
+	private Point2d[] points;
+
+	public MinDistance2D(Point2d[] points) {
+		if(points.length < 2)
+			throw new IllegalArgumentException();
+		this.points = points;
+	}
+	private static class ComparatorX implements Comparator<Point2d>{
+		public int compare(Point2d p1, Point2d p2) {
+			
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

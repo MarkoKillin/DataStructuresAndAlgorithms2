@@ -1,0 +1,70 @@
+package def;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+
+public class HuffmanTree {
+	private class CharFrequency implements Comparable<CharFrequency>{
+		char c;
+		int freq;
+		public CharFrequency(char c, int freq) {
+			this.c = c;
+			this.freq = freq;
+		}
+		@Override
+		public int compareTo(CharFrequency o) {
+			return freq-o.freq;
+		}
+		@Override
+		public String toString() {
+			return "[" + c + ", f = " + freq + "]";
+		}
+	}
+	
+	private LinkedList<CharFrequency> freqList;
+	private BinaryTree<CharFrequency> hTree;
+	public HuffmanTree(String text) {
+		computeFreq(text);
+		construct();
+	}
+	
+	private void computeFreq(String text) {
+		HashMap<Character, CharFrequency> freqMap = new HashMap<>();
+		freqList = new LinkedList<>();
+		for (int i = 0; i < text.length(); i++) {
+			char c = text.charAt(i);
+			CharFrequency cf = freqMap.get(c);
+			if(cf==null) {
+				cf = new CharFrequency(c, 1);
+				freqList.addLast(cf);
+				freqMap.put(c, cf);
+			} else {
+				cf.freq++;
+			}
+		}
+	}
+	
+	private void construct() {
+		int numCharacters = freqList.size();
+		PriorityQueue<Btnode<CharFrequency>> pq = new PriorityQueue<>();
+		Iterator<CharFrequency> it = freqList.iterator();
+		while(it.hasNext()) {
+			CharFrequency cf = it.next();
+			Btnode<CharFrequency> n = new Btnode<>(cf);
+			pq.add(n);
+		}
+		while(pq.size()>=2) {
+			Btnode<CharFrequency> rightST = pq.poll();
+			int rsFreq = rightST.getInfo().freq;
+			Btnode<CharFrequency> leftST = pq.poll();
+			int lsFreq = leftST.getInfo().freq;
+			CharFrequency tmp = new CharFrequency('#', rsFreq+lsFreq);
+			Btnode<CharFrequency> newNode = new Btnode<HuffmanTree.CharFrequency>(tmp, leftST, rightST);
+			pq.add(newNode);
+		}
+	}
+	
+	
+}

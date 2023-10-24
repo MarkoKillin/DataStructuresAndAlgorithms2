@@ -1,0 +1,46 @@
+package def;
+
+import java.util.LinkedList;
+
+public class HuffmanTree {
+	private class CharFrequency implements Comparable<CharFrequency>{
+		char c;
+		int freq;
+		public CharFrequency(char c, int freq) {
+			super();
+			this.c = c;
+			this.freq = freq;
+		}
+		public int compareTo(CharFrequency o) {
+			return freq-o.freq;
+		}
+	}
+	private LinkedList<CharFrequency> freqList;
+	private BinaryTree<Btnode<CharFrequency>> hTree;
+	public HuffmanTree(String text) {
+		compute(text);
+		construct();
+	}
+	private void compute(String text) {
+		// TODO Auto-generated method stub
+		
+	}
+	private void construct() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

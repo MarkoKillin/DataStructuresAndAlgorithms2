@@ -1,0 +1,115 @@
+package def;
+
+import interfejsi.Set;
+
+public class BST<T extends Comparable<T>> implements Set<T>{
+	private class SearchResult {
+		Btnode<T> node, parent;
+
+		public SearchResult(Btnode<T> node, Btnode<T> parent) {
+			super();
+			this.node = node;
+			this.parent = parent;
+		}
+	}
+	private Btnode<T> root = null;
+	
+	private SearchResult search(T info) {
+		Btnode<T> current = root;
+		Btnode<T> parent = null;
+		boolean found = false;
+		while(current!=null && !found) {
+			int cmp = info.compareTo(current.getInfo());
+			if(cmp == 0)
+				found = true;
+			else {
+				parent = current;
+				if(cmp < 0) current = current.getLeft();
+				else current = current.getRight();
+			}
+		}
+		return new SearchResult(current, parent);
+	}
+	
+	@Override
+	public boolean member(T element) {
+		SearchResult sr = search(element);
+		return sr.node!=null;
+	}
+
+	@Override
+	public boolean insert(T element) {
+		if(root == null) {
+			root = new Btnode<>(element);
+			return true;
+		}
+		SearchResult sr = search(element);
+		if(sr.node!=null)
+			return false;
+		Btnode<T> newNode = new Btnode<>(element);
+		Btnode<T> parent = sr.parent;
+		if(element.compareTo(parent.getInfo()) < 0)
+			parent.setLeft(newNode);
+		else
+			parent.setRight(newNode);
+		return true;
+	}
+
+	@Override
+	public boolean remove(T element) {
+		SearchResult sr = search(element);
+		if(sr.node==null)
+			return false;
+		Btnode<T> toRemove = sr.node;
+		Btnode<T> parent = sr.parent;
+		if(toRemove.getLeft()==null && toRemove.getRight()==null)
+			removeLeaf(toRemove, parent);
+		else if(toRemove.getLeft()==null || toRemove.getRight()==null)
+			removeInternalWithOneChild(toRemove, parent);
+		else
+			removeInternal(toRemove, parent);
+		return true;
+	}
+
+	private void removeLeaf(Btnode<T> toRemove, Btnode<T> parent) {
+		if(parent==null)
+			root = null;
+		else {
+			if(parent.getLeft() == toRemove)
+				parent.setLeft(null);
+			else
+				parent.setRight(null);
+		}
+	}
+
+	private void removeInternalWithOneChild(Btnode<T> toRemove, Btnode<T> parent) {
+		
+	}
+
+	private void removeInternal(Btnode<T> toRemove, Btnode<T> parent) {
+		
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

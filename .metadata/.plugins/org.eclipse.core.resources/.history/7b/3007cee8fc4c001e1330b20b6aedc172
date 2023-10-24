@@ -1,0 +1,30 @@
+
+public class RabinKarpomSearch {
+	String txt, pat;
+	private static final int LP = 1534322;
+	int fcFactor = 1;
+	int txtH, patH;
+	public RabinKarpomSearch(String txt, String patH) {
+		if(pat.length()>txt.length())
+			throw new IllegalArgumentException();
+		this.txt = txt;
+		this.pat = pat;
+		this.txtH = computeHash(txt, pat.length());
+		this.patH = computeHash(pat, pat.length());
+		for (int i = 0; i < pat.length()-1; i++) {
+			fcFactor = 31*(fcFactor)+pat.charAt(i);
+		}
+	}
+	private int computeHash(String pat2, int length) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+}

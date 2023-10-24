@@ -1,0 +1,108 @@
+package implementacija;
+
+import interfejsi.Set;
+
+public class CHashSet<T> implements Set<T> {
+	private static final int DEF = 101;
+	private enum Status{
+		EMPTY, DELETED, OCCUPIED
+	}
+	private Object[] table;
+	private Status[] status;
+	private int numElements;
+	
+	
+	public CHashSet(int size) {
+		if(size<=0)
+			throw new IllegalArgumentException();
+		reset(size);
+	}
+	
+	private void reset(int size) {
+		this.table = new Object[size];
+		this.status = new Status[size];	
+		for (int i = 0; i < status.length; i++) {
+			status[i] = Status.EMPTY;
+		}
+		this.numElements = 0;
+	}
+
+	public CHashSet() {
+		this(DEF);
+	}
+	
+	private int hash(T o) {
+		if(o==null)
+			throw new IllegalArgumentException();
+		return Math.abs(o.hashCode()%table.length);
+	}
+
+	private int searchColisionChain(T element, int hashValue) {
+		int currentPos = hashValue;
+		int maxChainSize = (table.length-1)/2;
+		int i = 0;
+		while(i<=maxChainSize && status[currentPos]!=Status.EMPTY) {
+			if(status[currentPos]==Status.OCCUPIED && table[currentPos].equals(element))
+				return currentPos;
+			i++;
+			currentPos = (hashValue + i*i) % table.length;
+		}
+		return -1;
+	}
+	
+	@Override
+	public boolean member(T element) {
+		return searchColisionChain(element, hash(element)) >= 0;
+	}
+	
+	@Override
+	public boolean remove(T element) {
+		int hashValue = hash(element);
+		int pos = searchColisionChain(element, hashValue);
+		if(pos<0) 
+			return false;
+		status[pos] = Status.DELETED;
+		numElements++;
+		return true;
+	}
+	
+	@Override
+	public boolean insert(T element) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

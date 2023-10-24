@@ -1,0 +1,114 @@
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
+
+public class HeapPQ<T extends Comparable<T>> implements PriorityQueue<T>{
+	private ArrayList<T> queue = new ArrayList<>();
+	private static final int DEF = 101;
+	
+	public HeapPQ(int size) {
+		if(size<=0)
+			throw new IllegalArgumentException();
+		this.queue = new ArrayList<>(size);
+	}
+	
+	public HeapPQ() {
+		this(DEF);
+	}
+
+	@Override
+	public T max() {
+		if(queue.size()==0)
+			throw new NoSuchElementException();
+		return queue.get(0);
+	}
+	
+	@Override
+	public int size() {
+		return queue.size();
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return queue.size()==0;
+	}
+	
+	@Override
+	public void insert(T element) {
+		queue.add(element);
+		restoreHeap(queue.size()-1);
+	}
+	
+	private void restoreHeap(int sonIndex) {
+		boolean heapRestored = false;
+		while(sonIndex>0 && !heapRestored) {
+			int parentIndex = (sonIndex-1)/2;
+			T parent = queue.get(parentIndex);
+			T son = queue.get(sonIndex);
+			if(parent.compareTo(son) > 0)
+				heapRestored=true;
+			else {
+				swap(parentIndex, sonIndex);
+				sonIndex = parentIndex;
+			}
+		}
+	}
+
+	private void swap(int a, int b) {
+		T tmp = queue.get(a);
+		queue.set(a, queue.get(b));
+		queue.set(b, tmp);
+	}
+
+	@Override
+	public T delMax() {
+		T max = queue.get(0);
+		swap(0, queue.size()-1);
+		queue.remove(queue.size()-1);
+		restoreHeap();
+		return max;
+	}
+
+	private void restoreHeap() {
+		boolean heapRestored = false;
+		int parentIndex = 0;
+		while(!heapRestored) {
+			int maxSonIndex = getMaxSon(parentIndex);
+			if(maxSonIndex==-1)
+				heapRestored=true;
+			else {
+				T parent = queue.get(parentIndex);
+				T son = queue.get(maxSonIndex);
+				if(parent.compareTo(son) > 0)
+					heapRestored=true;
+				else {
+					swap(parentIndex, maxSonIndex);
+					parentIndex=maxSonIndex;
+				}
+			}
+		}
+	}
+
+	private int getMaxSon(int parentIndex) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

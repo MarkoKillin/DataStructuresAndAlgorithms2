@@ -1,0 +1,53 @@
+package def;
+
+import interfejsi.Set;
+
+public class BST<T extends Comparable<T>> implements Set<T>{
+	private class SearchResult {
+		Btnode<T> node, parent;
+
+		public SearchResult(Btnode<T> node, Btnode<T> parent) {
+			super();
+			this.node = node;
+			this.parent = parent;
+		}
+	}
+	private Btnode<T> root = null;
+	
+	private SearchResult search(T info) {
+		if(root==null)
+			return null;
+		Btnode<T> current = root;
+		Btnode<T> parent = null;
+		while(current!=null) {
+			if(current.getInfo().equals(info)) {
+				SearchResult sr = new SearchResult(current, parent);
+				return sr;
+			}
+			parent = current;
+			int s = info.compareTo(current.getInfo());
+			if(s<0) current = current.getLeft();
+			else current = current.getRight();
+		}
+		return null;
+	}
+	
+	@Override
+	public boolean member(T element) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean insert(T element) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean remove(T element) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+}

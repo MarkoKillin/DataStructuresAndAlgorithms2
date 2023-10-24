@@ -1,0 +1,49 @@
+
+public class InsertionSort {
+	public static <T extends Comparable<T>> void sortv1(T[] a) {
+		for (int i = 1; i < a.length; i++) {
+			if(a[i].compareTo(a[i-1]) < 0) {
+				T c = a[i];
+				int j = i-1;
+				while(j>=0 && c.compareTo(a[j]) < 0) {
+					a[j+1] = a[j];
+					j--;
+				}
+				a[j+1] = c;
+			}
+		}
+	}
+	
+	public static <T extends Comparable<T>> void sortv2(T[] a) {
+		for (int i = 1; i < a.length; i++) {
+			T c = a[i];
+			int j = i-1;
+			while(j>=0 && c.compareTo(a[j]) < 0) {
+				a[j+1] = a[j];
+				j--;
+			}
+			a[j+1] = c;
+		}
+	}
+	public static <T extends Comparable<T>> void sortv3(T[] a) {
+		int minIndex = 0;
+		for (int i = 1; i < a.length; i++) {
+			if(a[minIndex].compareTo(a[i]) > 0)
+				minIndex = i;
+		}
+		if(minIndex!=0) {
+			T tmp = a[0];
+			a[0] = a[minIndex];
+			a[minIndex] = tmp;
+		}
+		for (int i = 2; i < a.length; i++) {
+			T c = a[i];
+			int j = i-1;
+			while(c.compareTo(a[j]) < 0) {
+				a[j+1] = a[j];
+				j--;
+			}
+			a[j+1] = c;
+		}
+	}
+}

@@ -1,0 +1,105 @@
+package implementacija;
+
+import interfejsi.Set;
+
+public class OHashSet<T> implements Set<T> {
+	private static final int DEF = 101;
+	private static class Node{
+		Object info;
+		Node next;
+		public Node(Object info) {
+			super();
+			this.info = info;
+		}
+	}
+	
+	public OHashSet(int size) {
+		if(size<=0)
+			throw new IllegalArgumentException();
+		this.table = new Node[size];
+	}
+
+	public OHashSet() {
+		this(DEF);
+	}
+	private Node[] table;
+	
+	private int hash(Object o) {
+		if(o==null)
+			throw new IllegalArgumentException();
+		return Math.abs(o.hashCode()%table.length);
+	}
+	
+	private Node[] searchColisionChain(T element, int hashValue) {
+		Node current = table[hashValue];
+		Node prev = null;
+		while(current!=null) {
+			if(current.info.equals(element)) {
+				Node[] res = new Node[2];
+				res[0] = current;
+				res[1] = prev;
+				return res;
+			}
+			prev = current;
+			current = current.next;
+		}
+		return null;
+	}
+	
+	@Override
+	public boolean member(T element) {
+		return searchColisionChain(element, hash(element)) != null;
+	}
+	
+	@Override
+	public boolean insert(T element) {
+		int hashValue = hash(element);
+		Node[] res = searchColisionChain(element, hashValue);
+		if(res!=null)
+			return false;
+		Node n = new Node(element);
+		n.next = table[hashValue];
+		table[hashValue] = n;
+		return true;
+	}
+
+	@Override
+	public boolean remove(T element) {
+		int hashValue = hash(element);
+		Node[] res = searchColisionChain(element, hashValue);
+		if(res==null)
+			return false;
+		if(res[0] == table[hashValue])
+			table[hashValue] = table[hashValue].next;
+		else
+			res[1].next = res[0].next;
+		return true;
+	}
+	
+	public void print() {
+		for (int i = 0; i < table.length; i++) {
+			System.out.println("Hashcode = " + i + ": ");
+			Node head = table[i];
+			if(head==null)
+				System.out.println(" empty");
+			else {
+				while(head!=null) {
+					System.out.print(head.info);
+					head = head.next;
+				}
+				System.out.println();
+			}
+		}
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+

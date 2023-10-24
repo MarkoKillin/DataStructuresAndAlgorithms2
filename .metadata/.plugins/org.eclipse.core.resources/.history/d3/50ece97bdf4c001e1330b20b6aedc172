@@ -1,0 +1,54 @@
+package Queen;
+
+public class NQueensRecursive {
+	private int n;
+	private int[] table;
+	private int slCounter;
+	
+	
+	public NQueensRecursive(int n) {
+		this.n = n;
+		this.table = new int[n];
+	}
+	
+	public void find() {
+		find(0);
+	}
+
+	private void find(int currentRow) {
+		if(currentRow == n)
+			printSolution();
+		else {
+			for (int j = 0; j < n; j++) {
+				if(available(currentRow, j)) {
+					table[currentRow] = j;
+					find(currentRow+1);
+				}
+			}
+		}
+	}
+
+	private boolean available(int currentRow, int currentCollumn) {
+		for (int i = 0; i < currentRow; i++) {
+			if(table[i]==currentCollumn || Math.abs(i-currentRow)
+					== Math.abs(table[i]-currentCollumn))
+				return false;
+		}
+		return true;
+	}
+
+	private void printSolution() {
+		++slCounter;
+		System.out.println("Solution " + slCounter);
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if(table[i] == j)
+					System.out.print("X ");
+				else
+					System.out.print("- ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
+}

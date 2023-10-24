@@ -1,0 +1,29 @@
+
+public class QuickSort {
+	public static <T extends Comparable<T>> void sort(T[] arr) {
+		
+	}
+
+	private static <T extends Comparable<T>> void sort(T[] arr, int l, int h) {
+		
+	}
+
+	private static <T extends Comparable<T>> int partitionHoare(T[] arr, int l, int h) {
+		
+	}
+	
+	private static <T extends Comparable<T>> int partitionLomuto(T[] arr, int l, int h) {
+		
+	}
+	
+	public static <T extends Comparable<T>> void sortMP(T[] arr) {
+		
+	}
+
+	private static <T extends Comparable<T>> void sortMP(T[] arr, int l, int h) {
+		
+	}
+	
+	
+
+}

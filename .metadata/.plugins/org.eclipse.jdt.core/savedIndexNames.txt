@@ -1,0 +1,13 @@
+INDEX VERSION 1.132+C:\Users\MarkoKillin\Desktop\Faks\Strukture Podataka i Algoritmi 2 Usmeni\.metadata\.plugins\org.eclipse.jdt.core
+1504829084.index
+860861014.index
+4238989711.index
+752056441.index
+1979492802.index
+75931715.index
+1680548686.index
+2228597084.index
+315145231.index
+2143148100.index
+4132072116.index
+1865797976.index

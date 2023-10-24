@@ -1,0 +1,4 @@
+
+public class SortableList<T extends Comparable<T>> {
+	
+}

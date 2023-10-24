@@ -1,0 +1,8 @@
+package Queen;
+
+public class Testic {
+	public static void main(String[] args) {
+		NQueens nq = new NQueens(4);
+		nq.find();
+	}
+}

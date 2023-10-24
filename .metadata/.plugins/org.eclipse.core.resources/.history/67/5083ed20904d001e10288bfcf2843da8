@@ -1,0 +1,58 @@
+package Queen;
+
+public class NQueens {
+	private int slCounter;
+	private int[] table;
+	private AvailableCell[] cells;
+	private class AvailableCell{
+		int y;
+		AvailableCell next;
+		public AvailableCell(int y) {
+			super();
+			this.y = y;
+		}
+	}
+	
+	public void find() {
+		find(0);
+	}
+	private void find(int i) {
+		
+	}
+	private void printSolution() {
+		slCounter++;
+		System.out.println("Solution:" + slCounter);
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if(j==table[i])
+					System.out.print("X ");
+				else
+					System.out.print("- ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
